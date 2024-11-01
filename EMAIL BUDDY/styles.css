@@ -1,0 +1,1905 @@
+:root {
+    --primary: #6C63FF;
+    --danger: #FF4B4B;
+    --background: #F8F9FF;
+    --card-bg: #FFFFFF;
+    --text: #2D3748;
+    --border: #E2E8F0;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --primary-bg: #1A1A1A;
+    --border-width: 3px;
+    --border-thick: 6px;
+    --shadow-offset: 12px;
+    --hover-offset: 17px;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --primary-font: 'Sans Forgetica', sans-serif;
+    --body-font: 'Inter', sans-serif;
+    --title-font: 'Alfa Slab One', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    font-family: var(--body-font);
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--spacing-sm);
+}
+
+header {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    text-shadow: 
+        1px 1px 1px rgba(0,0,0,0.2),
+        2px 2px 1px rgba(0,0,0,0.3),
+        3px 3px 1px rgba(0,0,0,0.4);
+    transform: perspective(500px) rotateX(10deg);
+    letter-spacing: 0.5px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    margin: var(--spacing-sm) 0;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-offset) var(--hover-offset) 0 #000;
+}
+
+.email-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+.btn {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid #000;
+    border-radius: 8px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    background: #fff;
+    box-shadow: 4px 4px 0 #000;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000;
+}
+
+.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.danger {
+    background: var(--danger);
+    color: white;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.history-table {
+    margin: 0 calc(-1 * var(--spacing-sm));
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: var(--spacing-sm);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.email-cell {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+@media (min-width: 768px) {
+    .history-table {
+        margin: 0;
+    }
+    
+    th, td {
+        padding: var(--spacing-md);
+        font-size: 16px;
+    }
+}
+
+th {
+    background: #F7FAFC;
+    font-weight: 500;
+}
+
+.no-messages {
+    color: #666;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    left: var(--spacing-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    z-index: 2000;
+}
+
+@media (min-width: 768px) {
+    .toast {
+        left: auto;
+        max-width: 300px;
+        text-align: left;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .card-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Add to your existing CSS */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.message-content {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.attachments {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.attachments a {
+    display: block;
+    padding: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.attachments a:hover {
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* Add to your existing CSS */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.no-data {
+    text-align: center;
+    padding: 1rem;
+    color: #666;
+}
+
+.toast.error {
+    background: #dc2626;
+}
+
+.toast.success {
+    background: #059669;
+}
+
+/* Improve table styles */
+.history-table {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background: #f8fafc;
+    font-weight: 500;
+}
+
+/* Make table responsive */
+@media (max-width: 768px) {
+    th, td {
+        padding: 0.75rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Add to existing CSS */
+.expiration-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow);
+}
+
+.expiration-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.option {
+    padding: 1rem;
+    border: 2px solid var(--primary);
+    background: white;
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.option:hover, .option.selected {
+    background: var(--primary);
+    color: white;
+}
+
+.custom-time-input {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.custom-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.custom-input-group input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.custom-input-group select {
+    min-width: 120px;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+}
+
+/* Time display styles */
+.time-display {
+    font-family: monospace;
+    background: #f1f5f9;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+}
+
+.expiration-indicator {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.time-remaining {
+    font-size: 0.8125rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.time-unit {
+    background: #f1f5f9;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.expiration-warning {
+    color: #f59e0b;
+}
+
+.expiration-critical {
+    color: #dc2626;
+}
+
+/* Update/Add these styles */
+.email-cell {
+    max-width: 300px;
+}
+
+.email-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.email-address {
+    word-break: break-all;
+}
+
+.expiration-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+    width: fit-content;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.expiration-badge.normal {
+    background: #f0f9ff;
+    color: #0369a1;
+}
+
+.expiration-badge.warning {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.expiration-badge.critical {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.expiration-badge.manual {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1rem 0;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .email-cell {
+        max-width: none;
+    }
+    
+    .expiration-badge {
+        font-size: 0.7rem;
+    }
+}
+
+/* Add these styles */
+.message-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.message-item:hover {
+    background-color: #f8fafc;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.message-date {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.message-from {
+    font-size: 0.9375rem;
+    margin-bottom: 0.5rem;
+}
+
+.message-preview {
+    color: #666;
+    font-size: 0.875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.email-cell {
+    cursor: pointer;
+}
+
+.email-cell:hover {
+    background-color: #f8fafc;
+}
+
+/* Enhanced Modal Styles */
+.modal-content {
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-meta {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.message-content {
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow-x: auto;
+}
+
+.html-content {
+    max-width: 100%;
+}
+
+.html-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.attachment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #f8fafc;
+    border-radius: 6px;
+}
+
+.attachment-icon {
+    font-size: 1.2rem;
+}
+
+.attachment-size {
+    color: #666;
+    font-size: 0.875rem;
+}
+
+/* Message Preview Improvements */
+.message-item {
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.message-item:hover {
+    border-left-color: var(--primary);
+}
+
+.message-item.unread {
+    background-color: #f0f9ff;
+    font-weight: 500;
+}
+
+.email-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.email-modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.email-modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.email-modal-body {
+    padding: 1rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.email-modal-footer {
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.email-metadata {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.email-content {
+    background: white;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.email-attachments {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+}
+
+.attachment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #f9fafb;
+    border-radius: 4px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #6b7280;
+}
+
+.close-btn:hover {
+    color: #374151;
+}
+
+.btn.small {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Add animation to buttons */
+.btn {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 99, 255, 0.2);
+    transform: translate(-5px, -5px);
+    box-shadow: var(--hover-offset) var(--hover-offset) 0 #000;
+}
+
+/* Add subtle hover effect to cards */
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Add loading animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+.avatar-customization {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(108, 99, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    z-index: 1000;
+}
+
+.customization-control {
+    margin-bottom: 15px;
+}
+
+.customization-control h3 {
+    color: #6C63FF;
+    margin-bottom: 10px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.options button {
+    background: #6C63FF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.options button:hover {
+    transform: scale(1.05);
+}
+
+/* Add to your existing CSS */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.toast {
+    animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+    z-index: 1000;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Smooth transitions */
+.message-item {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.message-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading animation */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.loading-indicator {
+    animation: pulse 1.5s infinite;
+}
+
+/* Empty state styles */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    background: #f8fafc;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s ease infinite;
+}
+
+.empty-state h3 {
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+/* Messages list styles */
+.messages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.messages-list {
+    border: 1px solid #e5e7eb;
+    border-radius: 0 0 8px 8px;
+}
+
+.message-item {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.message-item:last-child {
+    border-bottom: none;
+}
+
+.message-status {
+    width: 4px;
+    margin-right: 1rem;
+    background: transparent;
+    border-radius: 2px;
+}
+
+.message-item.unread .message-status {
+    background: #6C63FF;
+}
+
+.message-content {
+    flex: 1;
+}
+
+.message-from {
+    font-weight: 500;
+    color: #374151;
+}
+
+.message-date {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.message-subject {
+    color: #4b5563;
+    margin-top: 0.25rem;
+}
+
+/* Loading state */
+.loading-messages {
+    text-align: center;
+    padding: 2rem;
+}
+
+.loading-spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #6C63FF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add these styles while keeping your existing code */
+
+/* Header styling to match the dark theme */
+.header {
+    background: var(--primary-bg);
+    padding: var(--spacing-lg) var(--spacing-sm);
+    text-align: center;
+    position: relative;
+    margin: var(--spacing-sm);
+    border: 3px solid #000;
+    box-shadow: 6px 6px 0 #000;
+}
+
+.header:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px var(--shadow);
+}
+
+.header h1 {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Card styling */
+.card {
+    background: var(--card-bg);
+    border: var(--border-thick) solid #000;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: var(--hover-offset) var(--hover-offset) 0 #000;
+}
+
+/* Input styling */
+.email-input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: var(--border-thick) solid #000;
+    font-size: 1rem;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+    background: #fff;
+}
+
+.email-input-group input:focus {
+    outline: none;
+    transform: translate(-5px, -5px);
+    box-shadow: var(--hover-offset) var(--hover-offset) 0 #000;
+}
+
+/* Button group styling */
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Modern button styling */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: var(--border-thick) solid #000;
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: var(--hover-offset) var(--hover-offset) 0 #000;
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-offset/3) var(--shadow-offset/3) 0 #000;
+}
+
+/* Time options styling */
+.time-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.time-option {
+    padding: 0.75rem;
+    border: var(--border-thick) solid #000;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.time-option:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px var(--shadow);
+}
+
+.time-option:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px var(--shadow);
+}
+
+/* Table with thick borders */
+.history-table {
+    width: 100%;
+    border: var(--border-thick) solid #000;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+}
+
+/* Messages List with thick border */
+.messages-list {
+    min-height: 100px;
+    border: var(--border-thick) solid #000;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.messages-list:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px var(--shadow);
+}
+
+/* Clear History Button */
+.clear-history {
+    border: var(--border-thick) solid #ff3b30;
+    background: white;
+    color: #ff3b30;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #ff3b30;
+}
+
+.clear-history:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: var(--hover-offset) var(--hover-offset) 0 #ff3b30;
+}
+
+.clear-history:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-offset/3) var(--shadow-offset/3) 0 #ff3b30;
+}
+
+/* Card Headers with thick underline */
+.card-header h2 {
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.card-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 90%;
+    height: var(--border-thick);
+    background-color: #000;
+}
+
+/* Optional Glitch Effect on Hover */
+@keyframes glitch {
+    0% { transform: translate(2px, 2px); }
+    25% { transform: translate(-2px, -2px); }
+    50% { transform: translate(-2px, 2px); }
+    75% { transform: translate(2px, -2px); }
+    100% { transform: translate(2px, 2px); }
+}
+
+.btn:hover::before {
+    animation: glitch 0.3s infinite;
+}
+
+/* Add these styles while keeping your existing code */
+
+/* Button Base Styling with Glitch Effect */
+.btn {
+    border: var(--border-thick) solid #000;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+    transition: all 0.2s;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glitch Effect Variables */
+.btn::after {
+    --slice-0: inset(50% 50% 50% 50%);
+    --slice-1: inset(80% -6px 0 0);
+    --slice-2: inset(50% -6px 30% 0);
+    --slice-3: inset(10% -6px 85% 0);
+    --slice-4: inset(40% -6px 43% 0);
+    --slice-5: inset(80% -6px 5% 0);
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #000 5%);
+    text-shadow: -3px -3px 0 #000, 3px 3px 0 #00E6F6;
+    clip-path: var(--slice-0);
+}
+
+/* Button Hover States */
+.btn:hover::after {
+    animation: glitch 1s steps(2, end);
+}
+
+.btn:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: var(--hover-offset) var(--hover-offset) 0 #000;
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-offset/3) var(--shadow-offset/3) 0 #000;
+}
+
+/* Enhanced Glitch Animation */
+@keyframes glitch {
+    0% {
+        clip-path: var(--slice-1);
+        transform: translate(-20px, -10px);
+    }
+    10% {
+        clip-path: var(--slice-3);
+        transform: translate(10px, 10px);
+    }
+    20% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 10px);
+    }
+    30% {
+        clip-path: var(--slice-3);
+        transform: translate(0px, 5px);
+    }
+    40% {
+        clip-path: var(--slice-2);
+        transform: translate(-5px, 0px);
+    }
+    50% {
+        clip-path: var(--slice-3);
+        transform: translate(5px, 0px);
+    }
+    60% {
+        clip-path: var(--slice-4);
+        transform: translate(5px, 10px);
+    }
+    70% {
+        clip-path: var(--slice-2);
+        transform: translate(-10px, 10px);
+    }
+    80% {
+        clip-path: var(--slice-5);
+        transform: translate(20px, -10px);
+    }
+    90% {
+        clip-path: var(--slice-1);
+        transform: translate(-10px, 0px);
+    }
+    100% {
+        clip-path: var(--slice-1);
+        transform: translate(0);
+    }
+}
+
+/* Enhanced Delete/Clear Button Styling */
+.clear-history {
+    border: var(--border-thick) solid #ff3b30;
+    background: white;
+    color: #ff3b30;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #ff3b30;
+    position: relative;
+    overflow: hidden;
+}
+
+.clear-history::after {
+    background: linear-gradient(45deg, transparent 3%, #ff3b30 3%, #ff3b30 5%, #ff0000 5%);
+    text-shadow: -3px -3px 0 #ff0000, 3px 3px 0 #ff3b30;
+}
+
+.clear-history:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: var(--hover-offset) var(--hover-offset) 0 #ff3b30;
+}
+
+.clear-history:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-offset/3) var(--shadow-offset/3) 0 #ff3b30;
+}
+
+/* Retro Button Hover Effect */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(0, 0, 0, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: 0.6s;
+}
+
+.btn:hover::before {
+    transform: translateX(100%);
+}
+
+/* Custom Animation for Copy Button */
+#copyBtn:hover {
+    animation: copyGlitch 0.3s ease infinite;
+}
+
+@keyframes copyGlitch {
+    0% {
+        transform: translate(-5px, -5px);
+    }
+    25% {
+        transform: translate(-3px, -6px);
+    }
+    50% {
+        transform: translate(-5px, -4px);
+    }
+    75% {
+        transform: translate(-6px, -5px);
+    }
+    100% {
+        transform: translate(-5px, -5px);
+    }
+}
+
+/* Custom Animation for New Email Button */
+#refreshBtn:hover {
+    animation: refreshGlitch 0.5s ease infinite;
+}
+
+@keyframes refreshGlitch {
+    0% {
+        transform: translate(-5px, -5px) rotate(0deg);
+    }
+    25% {
+        transform: translate(-4px, -6px) rotate(2deg);
+    }
+    50% {
+        transform: translate(-5px, -4px) rotate(-2deg);
+    }
+    75% {
+        transform: translate(-6px, -5px) rotate(1deg);
+    }
+    100% {
+        transform: translate(-5px, -5px) rotate(0deg);
+    }
+}
+
+/* Custom Animation for Check Mail Button */
+#checkMailBtn:hover {
+    animation: checkMailGlitch 0.4s ease infinite;
+}
+
+@keyframes checkMailGlitch {
+    0% {
+        transform: translate(-5px, -5px) scale(1);
+    }
+    50% {
+        transform: translate(-4px, -6px) scale(1.02);
+    }
+    100% {
+        transform: translate(-5px, -5px) scale(1);
+    }
+}
+
+/* Retro CRT Effect for Buttons */
+.btn:hover {
+    text-shadow: 0.1em 0 0 rgba(255, 0, 0, 0.75),
+                -0.1em 0 0 rgba(0, 255, 0, 0.75),
+                0 0 0 rgba(0, 0, 255, 0.75);
+}
+
+/* Smoother Glitch Effect */
+@keyframes smoothGlitch {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-2px, 1px);
+        opacity: 0.9;
+    }
+    40% {
+        transform: translate(2px, -1px);
+        opacity: 0.8;
+    }
+    60% {
+        transform: translate(-1px, 2px);
+        opacity: 0.9;
+    }
+    80% {
+        transform: translate(1px, -2px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+/* Button Base with Lighter Effects */
+.btn {
+    --glitch-opacity: 0.15;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #fff;
+    border: var(--border-thick) solid #000;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    animation: smoothGlitch 2s infinite;
+}
+
+/* Professional SVG Icons for Buttons */
+.btn::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Copy Button Icon */
+#copyBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M16 1H4C3 1 2 2 2 3v14h2V3h12V1zm3 4H8C7 5 6 6 6 7v14c0 1 1 2 2 2h11c1 0 2-1 2-2V7c0-1-1-2-2-2z'/%3E%3C/svg%3E");
+}
+
+/* New Email Button Icon */
+#refreshBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z'/%3E%3C/svg%3E");
+}
+
+/* Check Mail Button Icon */
+#checkMailBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+}
+
+/* Clear History Button Icon */
+#clearAllBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff3b30'%3E%3Cpath d='M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z'/%3E%3C/svg%3E");
+}
+
+/* Smooth Hover Effect */
+.btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+.btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 #000;
+}
+
+/* Clear History Button Special Styling */
+.clear-history {
+    border-color: #ff3b30;
+    color: #ff3b30;
+}
+
+.clear-history:hover {
+    box-shadow: 6px 6px 0 #ff3b30;
+}
+
+/* Button Text Styling */
+.btn span {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Update HTML structure for buttons */
+
+/* Reduced Glitch Effect (10%) */
+@keyframes subtleGlitch {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-1px, 0.5px);
+        opacity: 0.99;
+    }
+    40% {
+        transform: translate(0.5px, -0.5px);
+        opacity: 0.98;
+    }
+    60% {
+        transform: translate(-0.5px, 1px);
+        opacity: 0.99;
+    }
+    80% {
+        transform: translate(0.5px, -1px);
+        opacity: 0.98;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+/* Professional Button Icons */
+.btn::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Copy Button - Document Icon */
+#copyBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'%3E%3C/path%3E%3Crect x='8' y='2' width='8' height='4' rx='1' ry='1'%3E%3C/rect%3E%3C/svg%3E");
+}
+
+/* Reduced Glitch Effect (much subtler) */
+@keyframes subtleGlitch {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-0.5px, 0.2px);
+        opacity: 0.995;
+    }
+    40% {
+        transform: translate(0.2px, -0.2px);
+        opacity: 0.99;
+    }
+    60% {
+        transform: translate(-0.2px, 0.5px);
+        opacity: 0.995;
+    }
+    80% {
+        transform: translate(0.2px, -0.5px);
+        opacity: 0.99;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+/* Modern Button Base with Minimal Effects */
+.btn {
+    --glitch-opacity: 0.05;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: #fff;
+    border: var(--border-thick) solid #000;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    animation: subtleGlitch 3s infinite;
+}
+
+/* Updated Professional SVG Icons */
+#copyBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+}
+
+#refreshBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 2v6h-6'%3E%3C/path%3E%3Cpath d='M3 12a9 9 0 0 1 15-6.7L21 8'%3E%3C/path%3E%3Cpath d='M3 22v-6h6'%3E%3C/path%3E%3Cpath d='M21 12a9 9 0 0 1-15 6.7L3 16'%3E%3C/path%3E%3C/svg%3E");
+}
+
+#checkMailBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z'%3E%3C/path%3E%3Cpath d='m3 7 9 6 9-6'%3E%3C/path%3E%3C/svg%3E");
+}
+
+#clearAllBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff3b30' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18'%3E%3C/path%3E%3Cpath d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'%3E%3C/path%3E%3Cpath d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Ultra-Subtle Glitch Effect (95% reduced) */
+@keyframes subtleGlitch {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-0.2px, 0.1px);
+        opacity: 0.998;
+    }
+    40% {
+        transform: translate(0.1px, -0.1px);
+        opacity: 0.997;
+    }
+    60% {
+        transform: translate(-0.1px, 0.2px);
+        opacity: 0.998;
+    }
+    80% {
+        transform: translate(0.1px, -0.2px);
+        opacity: 0.997;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+/* Stabilized Button Base */
+.btn {
+    --glitch-opacity: 0.02;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: #fff;
+    border: var(--border-thick) solid #000;
+    transition: all 0.4s ease;
+}
+
+/* Stable Icon Container */
+.btn::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.3s ease;
+    /* Remove icon from glitch animation */
+    transform: none !important;
+}
+
+/* Button Text Only Glitch */
+.btn span {
+    position: relative;
+    animation: subtleGlitch 6s infinite;
+}
+
+/* History Table Action Buttons */
+.history-actions .btn,
+.table-actions .btn {
+    padding: 8px 16px;
+    gap: 8px;
+}
+
+.history-actions .btn::before,
+.table-actions .btn::before {
+    width: 20px;
+    height: 20px;
+}
+
+/* Updated Professional SVG Icons with No Glitch */
+#copyBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+}
+
+#refreshBtn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 2v6h-6'%3E%3C/path%3E%3Cpath d='M3 12a9 9 0 0 1 15-6.7L21 8'%3E%3C/path%3E%3Cpath d='M3 22v-6h6'%3E%3C/path%3E%3Cpath d='M21 12a9 9 0 0 1-15 6.7L3 16'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Table Action Buttons */
+.copy-email::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.delete-email::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff3b30' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18'%3E%3C/path%3E%3Cpath d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'%3E%3C/path%3E%3Cpath d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Hover Effects Without Glitch */
+.btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+.btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 #000;
+}
+
+/* Clear History Button Special Styling */
+.clear-history {
+    border-color: #ff3b30;
+    color: #ff3b30;
+}
+
+.clear-history:hover {
+    box-shadow: 6px 6px 0 #ff3b30;
+}
+
+/* Enhanced 3D Header Styling */
+.header {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    text-align: center;
+    position: relative;
+    background: var(--primary-bg);
+    margin: var(--spacing-sm);
+    border: 3px solid #000;
+    box-shadow: 6px 6px 0 #000;
+}
+
+.header:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px var(--shadow);
+}
+
+.header h1 {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: var(--spacing-lg);
+    }
+    
+    .header {
+        padding: var(--spacing-xl);
+        margin: var(--spacing-lg) var(--spacing-sm);
+        border: var(--border-thick) solid #000;
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --shadow-offset: 6px;
+        --border-thick: 3px;
+    }
+    
+    .card:hover {
+        transform: none;
+        box-shadow: 4px 4px 0 #000;
+    }
+    
+    .btn:hover {
+        transform: none;
+        box-shadow: 4px 4px 0 #000;
+    }
+}
+
+/* Apply Sans Forgetica to headings */
+h1, h2, h3, .subtitle {
+    font-family: var(--primary-font);
+    letter-spacing: 0.5px;
+}
+
+/* Adjust header styles for the new font */
+.header h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 400; /* Sans Forgetica works best at normal weight */
+    color: #fff;
+    margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Card headers with new font */
+.card-header h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        line-height: 1.3;
+    }
+    
+    .subtitle {
+        font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    }
+    
+    .card-header h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Font loading fallback */
+.fonts-loading h1,
+.fonts-loading h2,
+.fonts-loading h3,
+.fonts-loading .subtitle {
+    font-family: var(--body-font);
+    opacity: 0.9;
+}
+
+/* Base font for everything */
+body, input, button, select, textarea {
+    font-family: var(--primary-font);
+    font-weight: 400;
+}
+
+/* Title specific styling */
+.header h1 {
+    font-family: var(--title-font);
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: #fff;
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 
+        2px 2px 0 #000,
+        4px 4px 0 #000;
+}
+
+/* Button specific styling */
+.btn {
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        text-shadow: 
+            1px 1px 0 #000,
+            2px 2px 0 #000;
+    }
+    
+    .btn {
+        font-size: 0.9rem;
+    }
+}
+
+/* Font loading states */
+.fonts-loading {
+    opacity: 0.8;
+}
+
+.fonts-loaded {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}

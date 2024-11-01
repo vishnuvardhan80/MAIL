@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Buddy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sans-forgetica" />
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://unpkg.com/es-module-shims/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.159.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.159.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Email Buddy</h1>
+            <p class="subtitle">Your friendly temporary email assistant! <span class="emoji">👋</span></p>
+        </header>
+
+        <div class="card email-generator">
+            <div class="email-input-group">
+                <input type="text" id="currentEmail" readonly>
+                <div class="button-group">
+                    <button id="copyBtn" class="btn">
+                        <span>Copy</span>
+                    </button>
+                    <button id="refreshBtn" class="btn">
+                        <span>New Email</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="expiration-dialog" id="expirationDialog">
+            <div class="dialog-content">
+                <h3>How long do you need this email?</h3>
+                <div class="expiration-options">
+                    <button class="btn option" data-hours="1">1 Hour</button>
+                    <button class="btn option" data-hours="24">1 Day</button>
+                    <button class="btn option" data-hours="72">3 Days</button>
+                    <button class="btn option" data-hours="168">1 Week</button>
+                    <button class="btn option" data-custom="true">Custom</button>
+                    <button class="btn option" data-manual="true">Delete Manually</button>
+                </div>
+                
+                <!-- Custom time input (hidden by default) -->
+                <div class="custom-time-input" id="customTimeInput" style="display: none;">
+                    <div class="custom-input-group">
+                        <input type="number" id="customTime" min="1" placeholder="Enter number">
+                        <select id="customTimeUnit">
+                            <option value="0.000277778">Seconds</option>
+                            <option value="0.016666667">Minutes</option>
+                            <option value="1">Hours</option>
+                            <option value="24">Days</option>
+                            <option value="168">Weeks</option>
+                            <option value="730">Months</option>
+                        </select>
+                    </div>
+                    <button class="btn primary" id="confirmCustomTime">Set Expiration</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card inbox">
+            <div class="card-header">
+                <h2>Your Inbox</h2>
+                <div class="inbox-actions">
+                    <button id="checkMailBtn" class="btn">
+                        <span>Check Mail</span>
+                    </button>
+                </div>
+            </div>
+            <div id="messagesList" class="messages-list">
+                <p class="no-messages">No messages yet</p>
+            </div>
+        </div>
+
+        <div class="card history">
+            <div class="card-header">
+                <h2>Email History</h2>
+                <div class="history-actions">
+                    <button id="clearAllBtn" class="btn clear-history">
+                        <span>Clear History</span>
+                    </button>
+                </div>
+            </div>
+            <div class="history-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Email Address</th>
+                            <th>Generated Date</th>
+                            <th>Messages</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dbContent">
+                        <!-- History items will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script type="module" src="animation.js"></script>
+</body>
+</html> 
